@@ -1,0 +1,10 @@
+{
+    "environment": "/home/oleg/PycharmProjects/simple_daemon/venv",
+    "locale_domain": "simple_daemon",
+    "pid_file": "/var/run/simple_daemon/simple_daemon.pid",
+    "packages": "lib/python3.5/site-packages",
+    "language": "ru",
+    "config_path": "config.json",
+    "workers": 4,
+    "locale_dir": "locale"
+}
