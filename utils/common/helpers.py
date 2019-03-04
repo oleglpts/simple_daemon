@@ -4,6 +4,7 @@ import sys
 import site
 import json
 import gettext
+import builtins
 import traceback
 from utils.common.logger import logger
 
@@ -253,3 +254,18 @@ def prepare_path(full_path):
         else:
             logger.debug('path exists: %s' % path)
     return True
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+def translate(message):
+    """
+
+    Message translation
+
+    :param message: message
+    :type message: str
+    :return: translated message
+
+    """
+    return builtins.__dict__.get('_', lambda x: x)(message)

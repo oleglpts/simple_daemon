@@ -2,6 +2,6 @@
 #                                                Execution flags                                                       #
 ########################################################################################################################
 
-DEBUG = True
+DEBUG = False
 TERMINATING = False
 TERMINATED = False

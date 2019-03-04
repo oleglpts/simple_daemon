@@ -121,12 +121,12 @@ class Daemon:
             while 1:
                 os.kill(pid, signal.SIGTERM)
                 time.sleep(0.1)
-                logger.info('daemon stopped')
         except OSError as err:
             e = str(err.args)
             if e.find("No such process") > 0:
                 if os.path.exists(self.pid_file):
                     os.remove(self.pid_file)
+                    logger.info('daemon stopped')
             else:
                 print(str(err.args))
                 sys.exit(1)
