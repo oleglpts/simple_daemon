@@ -4,6 +4,7 @@ import time
 import atexit
 import signal
 from utils.common.logger import logger
+from utils.common.helpers import prepare_path
 
 ########################################################################################################################
 #              Unix daemon basic class (see http://devres.zoomquiet.top/data/20150702154058/index.html)                #
@@ -64,6 +65,7 @@ class Daemon:
         os.dup2(se.fileno(), sys.stderr.fileno())
         atexit.register(self.delete_pid)
         pid = str(os.getpid())
+        prepare_path(self.pid_file)
         with open(self.pid_file, 'w+') as f:
             f.write(pid + '\n')
 

@@ -225,3 +225,31 @@ def get_modify_date(date_string):
     match1 = re.search('\\d{2}:\\d{2}:\\d{2}', date_string)
     return date_string[match0.regs[0][0]:match0.regs[0][1]] + ' ' + date_string[match1.regs[0][0]:match1.regs[0][
         1]] if match0 and match1 else None
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+def prepare_path(full_path):
+    """
+
+    Prepare directory for file
+
+    :param full_path: full path to file
+    :type full_path: str
+    :return True if successfully prepared
+    :rtype: bool
+
+    """
+    path = ''
+    for cat in full_path.split('/')[1:-1]:
+        path += '/%s' % cat
+        if not os.path.exists(path):
+            try:
+                os.mkdir(path)
+                logger.debug('path created: %s' % path)
+            except PermissionError:
+                logger.critical('there isn\'t permission to create: %s' % path)
+                return False
+        else:
+            logger.debug('path exists: %s' % path)
+    return True
