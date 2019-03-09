@@ -118,8 +118,8 @@ if __name__ == "__main__":
         exec_application = ExecApplication()
         exec_application.run()
     else:
-        args = set_config('/etc/simple_daemon/config.json')
-        our_daemon = ExecDaemon(args.get('pid_file', '/var/run/simple_daemon/simple_daemon.pid'))
+        args = set_config('config.json')
+        our_daemon = ExecDaemon(args.get('pid_file', '/tmp/simple_daemon.pid'))
         if len(sys.argv) == 2:
             if 'start' == sys.argv[1]:
                 our_daemon.start()
