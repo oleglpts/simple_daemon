@@ -1,6 +1,5 @@
 import os
 import logging
-from utils.common.flags import DEBUG
 
 ########################################################################################################################
 #                                               Logger definition                                                      #
@@ -47,5 +46,5 @@ def get_logger(logger_name, logging_format, file_name):
 logger = get_logger(
     'simple_daemon',
     '%(levelname)-10s|%(asctime)s|%(process)d|%(thread)d| %(name)s --- %(message)s (%(filename)s:%(lineno)d)',
-    '/var/log/simple_daemon/simple_daemon.log' if not DEBUG else 'simple_daemon.log'
+    '/tmp/simple_daemon.log'
 )

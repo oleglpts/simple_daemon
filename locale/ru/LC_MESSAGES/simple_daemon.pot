@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-02-17 11:06+IST\n"
+"POT-Creation-Date: 2019-03-07 11:18+IST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,78 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
+#: easy_daemon/daemon.py:99
+msgid "path created"
+msgstr "путь создан"
+
+#: easy_daemon/daemon.py:102
+msgid "there isn't permission to create"
+msgstr "нет прав для создания"
+
+#: easy_daemon/daemon.py:106
+msgid "path exists"
+msgstr "путь существует"
+
+#: easy_daemon/daemon.py:138
+msgid "daemon started"
+msgstr "демон стартовал"
+
+#: easy_daemon/daemon.py:168
+msgid "daemon stopped"
+msgstr "демон остановлен"
+
 #: simple_daemon.py:25
 msgid "daemon worked"
 msgstr "демон работает"
 
+#: utils/common/helpers.py:28
+msgid "activated"
+msgstr "активирован(а)"
+
+#: utils/common/helpers.py:28
+msgid "virtual environment"
+msgstr "виртуальная среда"
+
+#: utils/common/helpers.py:30
+msgid "virtual environment activation error"
+msgstr "ошибка активации виртуальной среды"
+
+#: utils/common/helpers.py:53
+msgid "installed"
+msgstr "установлен(а)"
+
+#: utils/common/helpers.py:53 utils/common/helpers.py:57
+msgid "translation"
+msgstr "перевод"
+
+#: utils/common/helpers.py:57
+msgid "for"
+msgstr "для"
+
+#: utils/common/helpers.py:57
+msgid "use default"
+msgstr "используется умолчание"
+
+#: utils/common/helpers.py:57 utils/common/helpers.py:76
+msgid "not found"
+msgstr "на найден(а)"
+
+#: utils/common/helpers.py:79
+msgid "format error"
+msgstr "ошибка формата"
+
+#: utils/common/helpers.py:119 utils/common/helpers.py:121
+msgid "error"
+msgstr "ошибка"
+
+#: utils/common/helpers.py:123
+msgid "error termination"
+msgstr "завершение по ошибке"
+
+#: utils/common/helpers.py:171
+msgid "flag"
+msgstr "флаг"
+
+#: utils/common/helpers.py:183
+msgid "scanner pool cleaning"
+msgstr "очистка пула сканера"

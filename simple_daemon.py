@@ -2,10 +2,13 @@
 
 import sys
 import time
+import builtins
+from config import args
 from utils.common.flags import *
-from utils.common.daemon import Daemon
 from utils.common.logger import logger
-from utils.common.helpers import set_config, activate_virtual_environment, set_localization
+from easy_daemon.daemon import Daemon
+
+_ = builtins.__dict__.get('_', lambda x: x)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -16,11 +19,9 @@ class ExecApplication:
         """
 
         Run application
+        Used easy-daemon (https://pypi.org/project/easy-daemon/)
 
         """
-        set_localization(args)
-        if args.get('environment') != "":
-            activate_virtual_environment(args)
         while True:
             logger.info(_('daemon worked'))
             time.sleep(5)
@@ -45,13 +46,12 @@ class ExecDaemon(Daemon):
 
 
 if __name__ == "__main__":
+    logger.name = args.get('logger_name', sys.argv[0])
     if DEBUG:
-        args = set_config('config.json')
         exec_application = ExecApplication()
         exec_application.run()
     else:
-        args = set_config('/etc/simple_daemon/config.json')
-        daemon = ExecDaemon(args.get('pid_file', '/var/run/simple_daemon/simple_daemon.pid'))
+        daemon = ExecDaemon(args.get('pid_file', '/tmp/simple_daemon.pid'), logger=logger)
         if len(sys.argv) == 2:
             if 'start' == sys.argv[1]:
                 daemon.start()

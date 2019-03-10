@@ -1,0 +1,8 @@
+Package             Version
+------------------- -------
+easy-daemon         0.0.3  
+pip                 19.0.2 
+pkg-resources       0.0.0  
+pooled-ProcessMixIn 0.0.1  
+setuptools          40.8.0 
+wheel               0.33.0 

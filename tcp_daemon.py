@@ -5,21 +5,27 @@ import sys
 import time
 import socket
 import signal
+import logging
+from config import args
 from utils.common.flags import *
-from utils.common.daemon import Daemon
 from utils.common.logger import logger
+from easy_daemon.daemon import Daemon
 from multiprocessing import cpu_count
 from threading import currentThread, Thread
-from utils.common.PooledProcessMixIn import PooledProcessMixIn
+from pooledProcessMixin import PooledProcessMixIn
 from socketserver import BaseServer, TCPServer, BaseRequestHandler
-from utils.common.helpers import set_config, activate_virtual_environment, set_localization, translate as _
+from utils.common.helpers import activate_virtual_environment, set_localization
 
 # ----------------------------------------------------------------------------------------------------------------------
 
 
 class MyTestHandler(BaseRequestHandler):
     """
-    Test Web application that outputs parent process id PPID, PID, thread, and URI and client address
+
+    Test application that outputs parent process id PPID, PID, thread and client address
+    Used easy-daemon (https://pypi.org/project/easy-daemon/)
+         pooledProcessMixin (https://pypi.org/project/pooled-ProcessMixIn/)
+
     """
     def handle(self):
         self.request.settimeout(5.0)
@@ -45,13 +51,14 @@ class MyTCPTest (PooledProcessMixIn, TCPServer):
     Server instance
 
     """
-    def __init__(self, processes=max(2, cpu_count()), threads=64, daemon=False, kill=True, debug=False):
+    def __init__(self, processes=max(2, cpu_count()), threads=64, daemon=False, kill=True, debug=False, log=logger):
         TCPServer.__init__(self, ('127.0.0.1', 8889), MyTestHandler)
         self._process_n = processes
         self._thread_n = threads
         self._daemon = daemon
         self._kill = kill
         self._debug = debug
+        self._logger = log
         self._init_pool()
         logger.info("listening on 127.0.0.1:8889")
 
@@ -114,12 +121,11 @@ class ExecDaemon(Daemon):
 
 if __name__ == "__main__":
     if DEBUG:
-        args = set_config('config.json')
+        logger.setLevel(logging.DEBUG)
         exec_application = ExecApplication()
         exec_application.run()
     else:
-        args = set_config('config.json')
-        our_daemon = ExecDaemon(args.get('pid_file', '/tmp/simple_daemon.pid'))
+        our_daemon = ExecDaemon(args.get('pid_file', '/tmp/simple_daemon.pid'), logger=logger)
         if len(sys.argv) == 2:
             if 'start' == sys.argv[1]:
                 our_daemon.start()

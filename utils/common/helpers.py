@@ -8,6 +8,8 @@ import builtins
 import traceback
 from utils.common.logger import logger
 
+_ = builtins.__dict__.get('_', lambda x: x)
+
 
 def activate_virtual_environment(args):
     """
